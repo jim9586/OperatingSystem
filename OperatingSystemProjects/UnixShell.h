@@ -28,12 +28,12 @@ static char userInput = '\0';
 static char buffer[BUFFER_MAX_LENGTH];
 static int bufferChars = 0;
 static char *commandArgv[5];
-static int commandArgv = 0;
+static int commandArgc = 0;
 
 #define FOREGROUND 'F'
 #define BACKGROUND 'B'
 #define SUSPENDED 'S'
-#define WAITTING_INPUT 'W'
+#define WAITING_INPUT 'W'
 
 #define STDIN 1
 #define STDOUT 2
@@ -53,7 +53,7 @@ typedef struct job {
     pid_t pid;
     pid_t pgid;
     int status;
-    char *description;
+    char *descriptor;
     struct job *next;
 }t_job;
 
@@ -61,7 +61,7 @@ static t_job* jobsList = NULL;
 
 static pid_t MSH_PID;
 static pid_t MSH_PGID;
-static int msh_TERMINAL, MSH_IS_INTERACTIVE;
+static int MSH_TERMINAL, MSH_IS_INTERACTIVE;
 static struct termios MSH_TMODES;
 
 void pipelining(int);
